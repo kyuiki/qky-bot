@@ -7,7 +7,7 @@ const 	fs = require('fs'),
 
 const {token , pref, owner} = {
 	pref : process.env.PREFIX ,
-	token : process.env.TOKEN_2 ,
+	token : process.env.TOKEN ,
 	owner : process.env.OWNER
 };
 client.commands = new Discord.Collection();
