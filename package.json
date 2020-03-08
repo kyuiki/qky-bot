@@ -1,0 +1,22 @@
+{
+  "name": "qkybot",
+  "version": "1.0.0",
+  "description": "my discord bot",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Qkiemauln",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "discord.js": "^12.0.1",
+    "dotenv": "^8.2.0",
+    "dotenv-flow": "^3.1.0",
+    "ffmpeg": "0.0.4",
+    "mojang-api": "0.0.2",
+    "nekos.life": "^2.0.5",
+    "superagent": "^5.2.2",
+    "ytdl-core": "^2.0.0"
+  }
+}
