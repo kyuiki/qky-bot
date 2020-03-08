@@ -19,7 +19,7 @@ module.exports = {
 			msg.channel.send("That is too high! max 99!")
 		}else{
 		msg.channel.bulkDelete(total);
-		msg.channel.send(`Deleted ${total - 1} messages!`)
+		msg.channel.send(`Deleted ${total - 1} messages!`).then(m => m.delete(6000));
 		}
 	}
 };

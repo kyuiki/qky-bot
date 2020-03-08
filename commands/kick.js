@@ -8,13 +8,12 @@ module.exports = {
 	usage: '<mention a user>',
 	cooldown: 3,
 	nsfw: false,
+	unusable: true,
 	guildOnly: true,
 	adminOnly: true,
 	ownerOnly: false,
 	execute(msg, args){
-msg.channel.send('Connecting to the network...').then((msg) => {
-	var late = Date.now() - msg.createdTimestamp;
-	msg.edit(`Edit Result : \`${late}\` ms\nShard Result : \`${msg.guild.shard.ping}\` ms.\nShard Result : \`${msg.guild.shard.ping}\` ms.`)})
+msg.channel.send('Sorry. Still in progress')
    }
 
 };
