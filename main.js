@@ -42,6 +42,9 @@ client.on('message', (msg) =>{
 	if(command.nsfw && !msg.channel.nsfw){
 		return msg.channel.send({embed:{title:"NSFW Command is Forbidden!", description:"Sorry! We cant send any NSFW Stuff here! Use NSFW commands in a NSFW marked channel (Open channel setting and mark as NSFW)",color:0xed2222,image:{url:'https://i.imgur.com/2uBvP53.gif'}}})
 	}
+	//checking if someone use nsfw command without joining my server
+	if(command.nsfw && !client.guilds.cache.get("598284769641627651").members.cache.get(msg.author.id)) 
+		return msg.channel.send("**Sorry!**\n> To Open this command. You have to join this server!\nhttps://discord.gg/j24UKsj").then(m => m.delete({timeout : 60000}));
 	//checking the commands if its only for Server Administrator
 	if(command.adminOnly && !msg.member.hasPermission('ADMINISTRATOR')){
 		return msg.channel.send('You cant do this! this is only for Admin of the guild')

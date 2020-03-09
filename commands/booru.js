@@ -22,8 +22,15 @@ module.exports = {
 		if(tags.length > 3) return msg.channel.send(embed.setDescription("Max tags is 3!"));
 		Booru.search(site, tags, {limit: 1, random: true}).then(posts =>{
             for(let post of posts){
-            	if(!post.fileUrl) return msg.channel.send(embed.setDescription("Sorry. We cant find the image with that tags. try use the different tags"))
-            	msg.channel.send(post.fileUrl);
+            	if(!post.fileUrl) return msg.channel.send(embed.setDescription("Sorry. We cant find the image with that tags. try use the different tags"));
+            	let rating = "";
+            	switch(post.rating){
+            		default: rating = "Unknown";break;
+            		case "e": rating = ":warning: Explicit! Absolutely Not Safe For Work";break;
+            		case "q": rating = ":question: Questionable? Its literally Not Safe";break;
+            		case "s": rating = ":white_check_mark: Safe. Its safe for you.";break;
+            	};
+            	msg.channel.send(`**Rating** : \n> ${rating}\n**Tags** : \n> \`${post.tags.join(", ")}\`\n**Link** :\n> ${post.fileUrl}`);
             }
 		})
 	}
