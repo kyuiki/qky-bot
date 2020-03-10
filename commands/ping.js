@@ -1,4 +1,3 @@
-const foo = "bar";
 
 module.exports = {
 	name: 'ping',

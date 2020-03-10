@@ -39,8 +39,7 @@ const list = {
     "cumarts": "/img/cum_jpg",
     "blowjob": "/img/blowjob",
     "pussygif": "/img/pussy"
-}
-
+};
 module.exports = {
 	name: 'nsfw',
 	description: 'show the nsfw images (need NSFW marked Channel)',

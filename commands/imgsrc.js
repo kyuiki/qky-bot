@@ -1,9 +1,9 @@
 const {google} = require("reverse-image-search");
 
 module.exports = {
-	name: 'reverse',
+	name: 'imagesearch',
 	description: 'Search By Image',
-	aliases: ['rev', 'imgsrc'],
+	aliases: ['googleimg', 'imgsrc'],
 	args: false,
 	usage: '<imageUrl/Attachments>',
 	cooldown: 3,

@@ -1,5 +1,5 @@
-const Discord = require('discord.js');
-const Booru = require("booru");
+const Booru = require("booru"),
+Discord = require('discord.js');
 const sitelist = ["e6","e621","e9","e926","hh","hypno","hypnohub","db","dan","danbooru","kc","konac","kcom","kn","konan","knet","yd","yand","yandere","gb","gel","gelbooru","r34","rule34","sb","safe","safebooru","tb","tbib","big","xb","xbooru","lb","lol","loli","lolibooru","pa","paheal","dp","derp","derpi","derpibooru","fb","furrybooru","rb","realbooru"]
 
 module.exports = {
@@ -34,4 +34,4 @@ module.exports = {
             }
 		})
 	}
-};
+}
