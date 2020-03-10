@@ -7,9 +7,9 @@ module.exports = {
 	usage: '<imagelink/attachment>',
 	cooldown: 3,
 	nsfw: false,
-	guildOnly: false,
+	guildOnly: true,
 	adminOnly: false,
-	ownerOnly: true,
+	ownerOnly: false,
 	execute(msg, args){
 		if(!process.env.IMAGGA_USER||!process.env.IMAGGA_PASS) return msg.reply(":warning: **Command Cant Be runned**\nPut User and password into your .env variable")
 		var link = (args[0]||args[1]);
