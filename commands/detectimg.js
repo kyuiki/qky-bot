@@ -5,7 +5,7 @@ module.exports = {
 	aliases: ['dnsfw', 'detectimg'],
 	args: false,
 	usage: '<imagelink/attachment>',
-	cooldown: 900000,
+	cooldown: 900,
 	nsfw: false,
 	guildOnly: true,
 	adminOnly: false,
