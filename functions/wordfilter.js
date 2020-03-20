@@ -27,7 +27,7 @@ exports.run = async (client, msg, old) => {
     var animal = await Bad2Good(result.output, wordList.words.animalword);
     //sepiiiiiiii
     var sword = await Bad2Good(animal.output, wordList.words.sepi);
-        if(sword.isBad || animal.isBad || result.isBad){
+        if(sword.isBad || (animal.isBad && str.includes("hewan")) || result.isBad){
             msg.delete();
             if(sword.isBad){
                 chance = "100 %";
@@ -35,6 +35,7 @@ exports.run = async (client, msg, old) => {
                 if(!roleID) before += ":warning: **TIDAK DAPAT MENEMUKAN ROLE PRISONER!**\n";
                 msg.member.roles.add(roleID);
                 msg.member.setNickname("[DIPENJARA]"+msg.member.displayName);
+                setTimeout(()=>{msg.member.roles.remove(roleID); msg.member.setNickname("")},3600000);
             }
             msg.channel.send({
                 embed:{
