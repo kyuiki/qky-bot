@@ -7,7 +7,7 @@ const 	fs = require('fs'),
 
 const {token , pref, owner, welcome_channel, myGuild} = {
 	pref : process.env.PREFIX ,
-	token : process.env.TOKEN_3 ,
+	token : process.env.TOKEN ,
 	owner : process.env.OWNER ,
 	welcome_channel : process.env.WELCOME_CHID,
 	myGuild : process.env.MY_GUILD_ID
