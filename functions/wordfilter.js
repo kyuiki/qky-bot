@@ -27,7 +27,7 @@ exports.run = async (client, msg, old) => {
     var animal = await Bad2Good(result.output, wordList.words.animalword);
     //sepiiiiiiii
     var sword = await Bad2Good(animal.output, wordList.words.sepi);
-        if(sword.isBad || (animal.isBad && str.includes("hewan")) || result.isBad){
+        if(sword.isBad || (animal.isBad && !str.includes("hewan")) || result.isBad){
             msg.delete();
             if(sword.isBad){
                 chance = "100 %";
@@ -39,7 +39,7 @@ exports.run = async (client, msg, old) => {
             }
             msg.channel.send({
                 embed:{
-                        title:"BLACKLISTED WORDS DETECTED!",
+                        title:"BLACKLISTED WORDS DETECTED <BETA>!",
                         description: before+"> "+sword.output+"\nBadWord? : `"+result.isBad+"`\nAnimalWord? : `"+animal.isBad+"`\nS-Word? : `"+sword.isBad+"`\nChance Dipenjara : "+chance,
                         color:0xfa1212,
                         author: {
