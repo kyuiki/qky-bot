@@ -10,7 +10,7 @@ module.exports = {
 	guildOnly: true,
 	adminOnly: false,
 	ownerOnly: false,
-	execute(msg, args){
+	execute(client, msg, args){
 msg.channel.send('Connecting to the network...').then((msg) => {
 	var late = Date.now() - msg.createdTimestamp;
 	msg.edit(`Edit Result : \`${late}\` ms\nShard Result : \`${msg.guild.shard.ping}\` ms.`)})

@@ -13,7 +13,7 @@ module.exports = {
 	guildOnly: true,
 	adminOnly: false,
 	ownerOnly: false,
-	execute(msg, args){
+	execute(client, msg, args){
 		let site = args[0],
 		embed = new Discord.MessageEmbed().setTitle("Booru Error").setColor("#ed2222");
 		if(!site||!sitelist.includes(site)) return msg.channel.send(embed.setDescription('Sorry But the Sites doesnt found. Try this instead\n```'+sitelist.join(', ')+'```\ngood luck'));

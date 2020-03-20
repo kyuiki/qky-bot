@@ -51,7 +51,7 @@ module.exports = {
 	guildOnly: true,
 	adminOnly: false,
 	ownerOnly: false,
-	execute(msg, args){
+	execute(client, msg, args){
 		let type = (args[0]||args[1]).toLowerCase();
 		if(!Object.keys(list).includes(type)) return msg.channel.send({embed:{title:"Not Found!",color: 0xef2222, description:`Sorry but your argument is wrong. But try this instead\n\`\`\`${Object.keys(list).join(", ")}\`\`\``}});
 		superagent.get('https://nekos.life/api/v2'+list[type]).end((err, res) =>{

@@ -1,4 +1,4 @@
-const {google} = require("reverse-image-search");
+//const {google} = require("reverse-image-search");
 
 module.exports = {
 	name: 'imagesearch',
@@ -12,7 +12,7 @@ module.exports = {
 	guildOnly: true,
 	adminOnly: false,
 	ownerOnly: false,
-	execute(msg, args){
+	execute(client, msg, args){
 		var link = (args[0]||args[1]);
 		if(msg.attachments.size){
 			link = msg.attachments.array[0].url;

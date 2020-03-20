@@ -11,7 +11,7 @@ module.exports = {
 	guildOnly: true,
 	adminOnly: false,
 	ownerOnly: false,
-	execute(msg, args){
+	execute(client, msg, args){
 		let total = (args[0] || args[1]) - -1;
 		if(total<2){
 			msg.channel.send("That is too low! min 1!")

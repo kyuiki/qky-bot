@@ -9,7 +9,7 @@ module.exports = {
 	guildOnly: false,
 	adminOnly: false,
 	ownerOnly: true,
-	execute(msg, args){
+	execute(client, msg, args){
 	const messages = msg.content.split(' ').slice(1).join(' ');
 		try{
 		let evaled = eval(messages);

@@ -5,12 +5,12 @@ module.exports = {
 	aliases: ['dnsfw', 'detectimg'],
 	args: false,
 	usage: '<imagelink/attachment>',
-	cooldown: 900000,
+	cooldown: 900,
 	nsfw: false,
 	guildOnly: true,
 	adminOnly: false,
 	ownerOnly: false,
-	execute(msg, args){
+	execute(client, msg, args){
 		if(!process.env.IMAGGA_USER||!process.env.IMAGGA_PASS) return msg.reply(":warning: **Command Cant Be runned**\nPut User and password into your .env variable")
 		var link = (args[0]||args[1]);
 		if(msg.attachments.size){

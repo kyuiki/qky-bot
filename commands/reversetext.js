@@ -9,7 +9,7 @@ module.exports = {
 	guildOnly: true,
 	adminOnly: false,
 	ownerOnly: false,
-	execute(msg, args){
+	execute(client, msg, args){
 		const messages = msg.content.split(' ').slice(1).join(' ');
 		if(messages){
 				return msg.channel.send(`**__${msg.member.displayName}__ Result :** \n"${messages.split('').reverse().join('')}"`)

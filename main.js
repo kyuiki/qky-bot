@@ -5,10 +5,12 @@ const 	fs = require('fs'),
 		require('dotenv-flow').config();
 		require('events').EventEmitter.defaultMaxListeners = 0;
 
-const {token , pref, owner} = {
+const {token , pref, owner, welcome_channel, myGuild} = {
 	pref : process.env.PREFIX ,
-	token : process.env.TOKEN ,
-	owner : process.env.OWNER
+	token : process.env.TOKEN_3 ,
+	owner : process.env.OWNER ,
+	welcome_channel : process.env.WELCOME_CHID,
+	myGuild : process.env.MY_GUILD_ID
 };
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -18,11 +20,21 @@ for(const file of commandFiles){
 }
 
 client.on('ready', () => {
-	console.log('Yey Im alive!');
+	console.log('Yey Im alive! Hi, my name is '+client.user.tag);
 	client.user.setActivity("Rewritten. my Prefix is "+pref, {url:'https://qkiemauln.github.io',type:"WATCHING"})
 });
 
+client.on("guildMemberAdd", (member) => {
+	require(`./functions/welcome.js`).run(client, member, welcome_channel);
+	console.log("emitted "+member)
+});
+
+client.on("guildMemberUpdate", (old, now) => {
+	require(`./functions/nickname.js`).run(client, old, now);
+})
+
 client.on('message', (msg) =>{
+	if(!msg.author.bot && msg.guild.id == myGuild) require('./functions/wordfilter.js').run(client, msg);
 	if(!msg.content.startsWith(pref) || msg.author.bot) return;
 	const args = msg.content.slice(pref.length).split(/ +/),
 	commandName = args.shift().toLowerCase();
@@ -81,7 +93,7 @@ client.on('message', (msg) =>{
 
 	//Finnaly Run the command!
 	try{ 
-		command.execute(msg, args);
+		command.execute(client, msg, args);
 	}catch(err){
 		console.log(err);
 		msg.reply('something went wrong with the command!');
@@ -90,6 +102,10 @@ client.on('message', (msg) =>{
 	process.on('unhandledRejection', err =>{
 		msg.channel.send({embed:{title:"API Error!", color:0xed8922, description:`Unhandled Promise Rejection :\n\`\`\`${err.name} : ${err.message}\`\`\`\nDetail : \`${err.code}|${err.method}|${err.httpStatus}\``}});
 	});
+});
+
+client.on("messageUpdate", (old, now) =>{
+	if(!now.author.bot && msg.guild.id == myGuild) require('./functions/wordfilter.js').run(client, now, old);
 })
 
 

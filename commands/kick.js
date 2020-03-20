@@ -11,8 +11,10 @@ module.exports = {
 	guildOnly: true,
 	adminOnly: true,
 	ownerOnly: false,
-	execute(msg, args){
-msg.channel.send('Sorry. Still in progress')
+	execute(client, msg, args){
+		if(!args[0]) return msg.channel.send("please Mention someone");
+		var person  = msg.mentions.users.first() /*|| msg.client.users.cache.get(args[0])*/;
+		person.guild.ban();
    }
 
 };

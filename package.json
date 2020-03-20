@@ -4,11 +4,12 @@
   "description": "my discord bot",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nodemon main.js"
   },
   "author": "Qkiemauln",
   "license": "ISC",
   "dependencies": {
+    "bad-words": "^3.0.3",
     "booru": "^2.2.1",
     "canvas": "^2.6.1",
     "curl": "^0.1.4",
@@ -18,8 +19,11 @@
     "ffmpeg": "0.0.4",
     "mojang-api": "0.0.2",
     "nekos.life": "^2.0.5",
-    "reverse-image-search": "0.0.0",
+    "snekfetch": "^4.0.4",
     "superagent": "^5.2.2",
     "ytdl-core": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }

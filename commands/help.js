@@ -12,7 +12,7 @@ module.exports = {
 	guildOnly: false,
 	adminOnly: false,
 	ownerOnly: false,
-	execute(msg, args){
+	execute(client, msg, args){
 		const data = new Discord.MessageEmbed().setTitle("Help Command").setTimestamp().setColor('#2375df'),
 		{commands} = msg.client;
 
