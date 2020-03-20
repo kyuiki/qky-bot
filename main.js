@@ -105,7 +105,7 @@ client.on('message', (msg) =>{
 });
 
 client.on("messageUpdate", (old, now) =>{
-	if(!now.author.bot && msg.guild.id == myGuild) require('./functions/wordfilter.js').run(client, now, old);
+	if(!now.author.bot && now.channel.type == 'text') if(now.guild.id == myGuild) require('./functions/wordfilter.js').run(client, now, old);
 })
 
 
