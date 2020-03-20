@@ -7,7 +7,7 @@ const Filter = require("bad-words"),
 
 exports.run = async (client, msg, old) => {
 	//check if the user has administator perm
-	//if(msg.member.hasPermission("ADMINISTRATOR")) return;
+	if(msg.member.hasPermission("ADMINISTRATOR")) return;
     let before = "", chance = "20%";
     if(old){
         before = `**Before** :\n> ${old.content}\n**After** :\n`;

@@ -34,7 +34,7 @@ client.on("guildMemberUpdate", (old, now) => {
 })
 
 client.on('message', (msg) =>{
-	if(!msg.author.bot && msg.guild.id == myGuild) require('./functions/wordfilter.js').run(client, msg);
+	if(!msg.author.bot && msg.channel.type == 'text') if(msg.guild.id == myGuild) require('./functions/wordfilter.js').run(client, msg);
 	if(!msg.content.startsWith(pref) || msg.author.bot) return;
 	const args = msg.content.slice(pref.length).split(/ +/),
 	commandName = args.shift().toLowerCase();
