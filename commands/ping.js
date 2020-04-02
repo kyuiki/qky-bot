@@ -13,7 +13,7 @@ module.exports = {
 	execute(client, msg, args){
 msg.channel.send('Connecting to the network...').then((msg) => {
 	var late = Date.now() - msg.createdTimestamp;
-	msg.edit(`Edit Result : \`${late}\` ms\nShard Result : \`${msg.guild.shard.ping}\` ms.`)})
+	msg.edit(`Edit Result : \`${late}\` ms\nShard Result : \`${msg.guild.shard.ping}\` ms.\nAPI Latency Result : \`${client.ws.ping}\` ms.`)})
    }
 
 };

@@ -21,7 +21,10 @@ for(const file of commandFiles){
 
 client.on('ready', () => {
 	console.log('Yey Im alive! Hi, my name is '+client.user.tag);
-	client.user.setActivity("Rewritten. my Prefix is "+pref, {url:'https://qkiemauln.github.io',type:"WATCHING"})
+	client.user.setActivity("Restarting bot...", {url:'https://qkiemauln.github.io',type:"WATCHING"})
+	setTimeout(()=>{
+		client.user.setActivity("Rewritten. my Prefix is "+pref, {url:'https://qkiemauln.github.io',type:"WATCHING"})
+	}, 10000);
 });
 
 client.on("guildMemberAdd", (member) => {
@@ -98,16 +101,17 @@ client.on('message', (msg) =>{
 		console.log(err);
 		msg.reply('something went wrong with the command!');
 	}
-	//API error Catcher
-	process.on('unhandledRejection', err =>{
-		msg.channel.send({embed:{title:"API Error!", color:0xed8922, description:`Unhandled Promise Rejection :\n\`\`\`${err.name} : ${err.message}\`\`\`\nDetail : \`${err.code}|${err.method}|${err.httpStatus}\``}});
-	});
 });
 
 client.on("messageUpdate", (old, now) =>{
 	if(!now.author.bot && now.channel.type == 'text') if(now.guild.id == myGuild) require('./functions/wordfilter.js').run(client, now, old);
 })
 
+//API error Catcher
+process.on('unhandledRejection', err =>{
+	console.log(err)
+	//msg.channel.send({embed:{title:"API Error!", color:0xed8922, description:`Unhandled Promise Rejection :\n\`\`\`${err.name} : ${err.message}\`\`\`\nDetail : \`${err.code}|${err.method}|${err.httpStatus}\``}});
+});
 
 client.login(token);
 console.log("Finally!");

@@ -150,7 +150,6 @@
 			"nyet":" <HEWAN> ",
 			"kunyuk":" <HEWAN> ",
 			"kampret":" <HEWAN> ",
-			"asw":" <HEWAN> ",
 			"monyed": " <HEWAN> "
 		},
 		"sepi" : {
@@ -171,7 +170,18 @@
 			"shepi":" <?SePi?> ",
 			"sh3p1":" <?SePi?> ",
 			"5h3p1":" <?SePi?> ",
-			"shep1":" <?SePi?> "
+			"shep1":" <?SePi?> ",
+			"nyimak": "<!NYIMAK!>",
+			"ny1mak": "<!NYIMAK!>",
+			"nyim4k": "<!NYIMAK!>",
+			"ny1m4k": "<!NYIMAK!>",
+			"kacang": "<!Kacang!>",
+			"katcang": "<!Kacang!>",
+			"k4c4ng": "<!Kacang!>",
+			"kac4ng": "<!Kacang!>",
+			"k4cang": "<!Kacang!>",
+			"peanut": "<!Kacang!>",
+			"🥜": "<!Kacang!>"
 		}
 	}
 }

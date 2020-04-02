@@ -4,7 +4,8 @@
   "description": "my discord bot",
   "main": "main.js",
   "scripts": {
-    "test": "nodemon main.js"
+    "test": "nodemon main.js",
+    "beta": "nodemon beta.js"
   },
   "author": "Qkiemauln",
   "license": "ISC",
