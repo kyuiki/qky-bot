@@ -1,6 +1,6 @@
 const 	fs = require('fs'),
 		Discord = require("discord.js"),
-		client = new Discord.Client(),
+		client = new Discord.Client({disableEveryone: true}),
 		cooldowns = new Discord.Collection();
 		require('dotenv-flow').config();
 		require('events').EventEmitter.defaultMaxListeners = 0;
