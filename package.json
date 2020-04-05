@@ -20,8 +20,10 @@
     "ffmpeg": "0.0.4",
     "mojang-api": "0.0.2",
     "nekos.life": "^2.0.5",
+    "novelcovid": "^1.1.2",
     "snekfetch": "^4.0.4",
     "superagent": "^5.2.2",
+    "translate": "^1.1.2",
     "ytdl-core": "^2.0.0"
   },
   "devDependencies": {

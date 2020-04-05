@@ -32,6 +32,11 @@ client.on("guildMemberAdd", (member) => {
 	console.log("emitted "+member)
 });
 
+client.on("guildMemberRemove", (member) => {
+	require(`./functions/goodbye.js`).run(client, member, welcome_channel);
+	console.log("emitted "+member)
+});
+
 client.on("guildMemberUpdate", (old, now) => {
 	require(`./functions/nickname.js`).run(client, old, now);
 })

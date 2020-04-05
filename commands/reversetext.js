@@ -16,11 +16,11 @@ module.exports = {
 			}
 		msg.channel.send("Please write a Letter. i will reverse it").then(() => {
 			const filter = m => msg.author.id === m.author.id;
-			msg.channel.awaitMessages(filter, {time: 30000, max: 1, errors: ['time']})
+			msg.channel.awaitMessages(filter, {time: 60000, max: 1, errors: ['time']})
 			.then(message => {
 				msg.channel.send(`**__${msg.member.displayName}__ Result :** \n"${message.first().content.split('').reverse().join('')}"`)
 			}).catch(() => {
-				msg.channel.send("Hmmm. You didnt enter any input. ok Canceled!")
+				msg.channel.send("Hmmm. You didnt enter any input. ok Canceled!");
 			})
 		})
 	}
