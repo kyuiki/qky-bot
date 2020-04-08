@@ -1,3 +1,4 @@
+const {NovelCovid} = require("novelcovid"), covid = new NovelCovid();
 const superagent = require("superagent");
 const list = {
     "randomgif": "/img/Random_hentai_gif",
@@ -54,8 +55,31 @@ module.exports = {
 	execute(client, msg, args){
 		let type = (args[0]||args[1]).toLowerCase();
 		if(!Object.keys(list).includes(type)) return msg.channel.send({embed:{title:"Not Found!",color: 0xef2222, description:`Sorry but your argument is wrong. But try this instead\n\`\`\`${Object.keys(list).join(", ")}\`\`\``}});
-		superagent.get('https://nekos.life/api/v2'+list[type]).end((err, res) =>{
-			if(res) return msg.channel.send(res.body.url);
+		superagent.get('https://nekos.life/api/v2'+list[type]).end((err, result) =>{
+            covid.countries("indonesia").then(res => {
+                let embed = {
+                        title:"COVID-19 mulai menyebar",
+                        author:{
+                            name:"Tahukah kamu?", 
+                            icon_url:"https://r7.pngguru.com/path/242/820/983/question-mark-icon-question-mark-png-527c9efd741ebe7856dde44d2506af66.png"
+                        },
+                        description: `Corona Virus Di indonesia sudah menyebar? Masih belom mau tobat? :3`,
+                        fields: [
+                            {
+                                name: 'Statistik Corona Virus Di indonesia',
+                                value: `**Kasus COVID-19 di indonesia** : ${res.cases} Kasus\n**Yang Sembuh dari COVID-19** :${res.recovered} Orang\n**Meninggal Karena COVID-19** : ${res.deaths} orang\nTadi adalah Kasus yang di indonesia. Cepat tobat sebelum Meninggal!`,
+                                inline: false,
+                            }
+                        ],
+                        image : {url:result.body.url},
+                        color: 0xef2222,
+                        timestamp: new Date(res.updated),
+                        footer:{
+                            text: "Ingat Tobat sebelum terlambat "
+                        }
+                    }
+                    msg.channel.send(result.body.url,{embed: embed});
+            })
 			console.log(err);
 		})
    }
