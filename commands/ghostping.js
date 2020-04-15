@@ -1,18 +1,18 @@
 
 module.exports = {
-	name: 'ghostping',
-	description: 'ghostpinging isnt allowed!!',
-	aliases: ['gp'],
+	name: 'summon',
+	description: 'Summon entity! (nonsense command)',
+	aliases: [],
 	args: false,
-	usage: '<args>',
+	usage: '<entity>',
 	cooldown: 1,
-	unusable: true,
+	unusable: false,
 	nsfw: false,
 	guildOnly: true,
-	adminOnly: true,
+	adminOnly: false,
 	ownerOnly: false,
 	execute(client, msg, args){
-		msg.delete()
+		msg.channel.send("Object successfully summoned")
    }
 
 };

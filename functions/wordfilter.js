@@ -5,7 +5,7 @@ const Filter = require("bad-words"),
 	filter = new Filter({placeholder: '*'});
 	filter.removeWords();
 
-exports.run = async (client, msg, old) => {
+exports.run = async (client, logId, msg, old) => {
 	//check if the user has administator perm
 	if(msg.member.hasPermission("ADMINISTRATOR")) return;
     //the string 
@@ -17,7 +17,7 @@ exports.run = async (client, msg, old) => {
 
     //filter 1 (loosen but agressive)
     var wl_wl = Object.keys(wordList.words.wordlist), an_wl = Object.keys(wordList.words.animalword), sw_wl = Object.keys(wordList.words.sepi),
-    wl_bool = false,an_bool = false,sw_bool = false,filter1=false;
+    wl_bool = false,an_bool = false,filter1=false;
     for(var i in wl_wl){
         if(str.includes(wl_wl[i].toLowerCase()))
             wl_bool=true;
@@ -26,24 +26,12 @@ exports.run = async (client, msg, old) => {
         if(str.includes(an_wl[i].toLowerCase()))
             an_bool=true;
     }
-    for(var i in sw_wl){
-        if(str.includes(sw_wl[i].toLowerCase()))
-            sw_bool=true;
-    }
-    if(wl_bool||(an_bool && !str.includes("hewan"))||sw_bool){
-            if(sw_bool){
-                chance = "100 %";
-                var roleID = msg.guild.roles.cache.find(r => r.name.toLowerCase().includes("prisoner"));
-                if(!roleID) before += ":warning: **TIDAK DAPAT MENEMUKAN ROLE PRISONER!**\n";
-                msg.member.roles.add(roleID);
-                msg.member.setNickname("[RIP]"+msg.member.displayName);
-                setTimeout(()=>{msg.member.roles.remove(roleID); msg.member.setNickname("")},3600000);
-            }
+    if(wl_bool||(an_bool && !str.includes("hewan"))){
             msg.delete();
-            msg.channel.send({
+            client.channels.cache.get(logId).send({
                 embed:{
-                        title:"Filter ke 1 (Mostly Accurate)!",
-                        description: before+"> "+str+"\nBadWord? : `"+wl_bool+"`\nAnimalWord? : `"+an_bool+"`\nS-Word? : `"+sw_bool+"`\nChance Dipenjara : "+chance,
+                        title:"Filter ke 1 (Sepertinya akurat)!",
+                        description: before+"> "+str+"\nBadWord? : `"+wl_bool+"`\nAnimalWord? : `"+an_bool+"\nChance Dipenjara : "+chance+`\nMereka bilang seperti itu di channel <#${msg.channel.id}>. Dia adalah <@${msg.author.id}>`,
                         color:0xfa1212,
                         author: {
                             name: msg.author.tag,
@@ -70,16 +58,11 @@ exports.run = async (client, msg, old) => {
     //animal word start in here
     var animal = await Bad2Good(result.output, wordList.words.animalword);
     //sepiiiiiiii
-    var sword = await Bad2Good(animal.output, wordList.words.sepi);
-        if(sword.isBad || (animal.isBad && !str.includes("hewan")) || result.isBad){
-            if(sword.isBad){
-                chance = Math.ceil(Math.random()*20)+60+" %";
-                msg.member.setNickname("[!]"+msg.member.displayName);
-            }
-            msg.channel.send({
+        if((animal.isBad && !str.includes("hewan")) || result.isBad){
+            client.channels.cache.get(logId).send({
                 embed:{
                         title:"Filter ke 2  (Questionable)!",
-                        description: before+"> "+sword.output+"\nBadWord? : `"+result.isBad+"`\nAnimalWord? : `"+animal.isBad+"`\nS-Word? : `"+sword.isBad+"`\nChance Dipenjara : "+chance,
+                        description: before+"> "+sword.output+"\nBadWord? : `"+result.isBad+"`\nAnimalWord? : `"+animal.isBad+"\nChance Dipenjara : "+chance+`\nMereka bilang seperti itu di channel <#${msg.channel.id}>. Dia adalah <@${msg.author.id}>`,
                         color:0xfa9812,
                         author: {
                             name: msg.author.tag,

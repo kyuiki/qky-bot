@@ -5,10 +5,11 @@ const 	fs = require('fs'),
 		require('dotenv-flow').config();
 		require('events').EventEmitter.defaultMaxListeners = 0;
 
-const {token , pref, owner, welcome_channel, myGuild} = {
+const {token , pref, owner, welcome_channel, myGuild, logID} = {
 	pref : process.env.PREFIX ,
 	token : process.env.TOKEN ,
 	owner : process.env.OWNER ,
+	logID : process.env.LOGGING_CHANNEL ,
 	welcome_channel : process.env.WELCOME_CHID,
 	myGuild : process.env.MY_GUILD_ID
 };
@@ -42,8 +43,8 @@ client.on("guildMemberUpdate", (old, now) => {
 })
 
 client.on('message', (msg) =>{
-	if(!msg.author.bot && msg.channel.type == 'text') if(msg.guild.id == myGuild) require('./functions/wordfilter.js').run(client, msg);
-	if(!msg.content.startsWith(pref) || msg.author.bot) return;
+	if(!msg.author.bot && msg.channel.type == 'text') if(msg.guild.id == myGuild) require('./functions/wordfilter.js').run(client, logID, msg);
+	if(!msg.content.toLowerCase().startsWith(pref) || msg.author.bot) return;
 	const args = msg.content.slice(pref.length).split(/ +/),
 	commandName = args.shift().toLowerCase();
 
@@ -73,6 +74,14 @@ client.on('message', (msg) =>{
 	if(command.ownerOnly && msg.author.id !== owner){
 		return msg.channel.send('**SPECIAL ERROR!** This command is only for Owner of the bot')
 	}
+	//checking the commands if they have arguments in it
+	if(command.args && !args.length){
+		let reply = `Where is the arguments, ${msg.author}!`;
+		if(command.usage){
+			reply += `\nThe proper usage would be: \`${pref}${command.name} ${command.usage}\``
+		}
+		return msg.channel.send(reply);
+	}
 	//cooldown of the command
 	if(!cooldowns.has(command.name)){
 		cooldowns.set(command.name, new Discord.Collection());
@@ -90,15 +99,6 @@ client.on('message', (msg) =>{
 	timestamps.set(msg.author.id, now);
 	setTimeout(() => timestamps.delete(msg.author.id), cooldownAmount)
 
-	//checking the commands if they have arguments in it
-	if(command.args && !args.length){
-		let reply = `Where is the arguments, ${msg.author}!`;
-		if(command.usage){
-			reply += `\nThe proper usage would be: \`${pref}${command.name} ${command.usage}\``
-		}
-		return msg.channel.send(reply);
-	}
-
 	//Finnaly Run the command!
 	try{ 
 		command.execute(client, msg, args);
@@ -109,7 +109,7 @@ client.on('message', (msg) =>{
 });
 
 client.on("messageUpdate", (old, now) =>{
-	if(!now.author.bot && now.channel.type == 'text') if(now.guild.id == myGuild) require('./functions/wordfilter.js').run(client, now, old);
+	if(!now.author.bot && now.channel.type == 'text') if(now.guild.id == myGuild) require('./functions/wordfilter.js').run(client, logID, now, old);
 })
 
 //API error Catcher

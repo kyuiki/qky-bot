@@ -1,0 +1,49 @@
+[
+	{
+	"code": "MRWSCH",
+	"rahasia": false,
+	"embed":{
+		"title": "Konfirmasi Peluncuran Nuklir",
+		"description": "Anda telah memasuki kode peluncuran nuklir. Target telah dikunci ke **\"Romansyah Base\"** Untuk mengganti target harap Masukan koordinat.",
+		"color": "0xfa2323",
+		"image": {
+				"url":"https://cdn.discordapp.com/attachments/634991493534449664/698404043462017084/Screenshot_20200411-120855_Minecraft-picsay.jpg"}
+		}
+	},
+	{
+	"code": "42069",
+	"rahasia": false,
+	"embed":{
+		"title": "Smoke weed everyday",
+		"description": "42069? Nice ",
+		"color": "0x017601"
+			}
+	},
+	{
+	"code": "39ANIM",
+	"rahasia": true,
+	"embed":{
+		"title": "Harta Karun! Pergi Ke...",
+		"description": "Silahkan Pergi menuju (x:1228 y:65 z:330) Lalu masuk kedalam Dan cari kode lagi",
+		"color": "0x23fa23"
+			}
+	},
+	{
+	"code": "59USD",
+	"rahasia": true,
+	"embed":{
+		"title": "Seperti Harga Animal Crossing? Sekarang...",
+		"description": "Silahkan Pergi menuju (x:1187 y:65 z:428) Lalu masuk kedalam Dan Cari chest ambil hadiah :)",
+		"color": "0x23fa23"
+			}
+	},
+	{
+	"code": "TGS39",
+	"rahasia": true,
+	"embed":{
+		"title": "Tugas B Inggris",
+		"description": "1. Aira went to course by her new bicycle this afternoon\n2. Because Aya Came to home late, yesterday her mother scolded her.\n3. Did he watch the film last night?",
+		"color": "0x23fa23"
+			}
+	}
+]
