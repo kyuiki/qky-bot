@@ -62,7 +62,7 @@ exports.run = async (client, logId, msg, old) => {
             client.channels.cache.get(logId).send({
                 embed:{
                         title:"Filter ke 2  (Questionable)!",
-                        description: before+"> "+sword.output+"\nBadWord? : `"+result.isBad+"`\nAnimalWord? : `"+animal.isBad+"\nChance Dipenjara : "+chance+`\nMereka bilang seperti itu di channel <#${msg.channel.id}>. Dia adalah <@${msg.author.id}>`,
+                        description: before+"> "+animal.output+"\nBadWord? : `"+result.isBad+"`\nAnimalWord? : `"+animal.isBad+"\nChance Dipenjara : "+chance+`\nMereka bilang seperti itu di channel <#${msg.channel.id}>. Dia adalah <@${msg.author.id}>`,
                         color:0xfa9812,
                         author: {
                             name: msg.author.tag,
