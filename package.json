@@ -27,7 +27,7 @@
     "ytdl-core": "^2.1.0"
   },
   "devDependencies": {
-    "minimist": ">=0.2.1",
+    "minimist": ">=1.2.3",
     "nodemon": "^2.0.3"
   }
 }
