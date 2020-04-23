@@ -19,6 +19,7 @@
     "dotenv-flow": "^3.1.0",
     "ffmpeg": "0.0.4",
     "mojang-api": "0.0.2",
+    "ms": "^2.1.2",
     "nekos.life": "^2.0.6",
     "novelcovid": "^1.2.7",
     "snekfetch": "^4.0.4",

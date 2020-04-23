@@ -29,12 +29,12 @@ client.on('ready', () => {
 });
 
 client.on("guildMemberAdd", (member) => {
-	require(`./functions/welcome.js`).run(client, member, welcome_channel);
+	require(`./functions/welcome.js`).run(client, member, welcome_channel, logID);
 	console.log("emitted "+member)
 });
 
 client.on("guildMemberRemove", (member) => {
-	require(`./functions/goodbye.js`).run(client, member, welcome_channel);
+	require(`./functions/goodbye.js`).run(client, member, welcome_channel, logID);
 	console.log("emitted "+member)
 });
 
@@ -60,15 +60,16 @@ client.on('message', (msg) =>{
 		return msg.reply('i cant run it inside DMs');
 	}
 	//checking the commands if its only for NSFW channel
-	if(command.nsfw && !msg.channel.nsfw){
-		return msg.channel.send({embed:{title:"NSFW Command is Forbidden!", description:"Sorry! We cant send any NSFW Stuff here! Use NSFW commands in a NSFW marked channel (Open channel setting and mark as NSFW)",color:0xed2222,image:{url:'https://i.imgur.com/2uBvP53.gif'}}})
+	if(command.nsfw /*&& !msg.channel.nsfw*/){
+		//return msg.channel.send({embed:{title:"NSFW Command is Forbidden!", description:"Sorry! We cant send any NSFW Stuff here! Use NSFW commands in a NSFW marked channel (Open channel setting and mark as NSFW)",color:0xed2222,image:{url:'https://i.imgur.com/2uBvP53.gif'}}})
+		return msg.channel.send({embed:{title:"NSFW Command is Forbidden!", description:"Maaf! Karena hari ini memasuki Bulan Puasa. Kami menutup Command ini sementara :smile:. Selamat menunaikan ibadah puasa",color:0x22ed42,image:{url:'https://cdn.discordapp.com/attachments/614009255959199768/702824998846595082/1587636897920.jpg'}}})
 	}
 	//checking if someone use nsfw command without joining my server
 	if(command.nsfw && !client.guilds.cache.get("598284769641627651").members.cache.get(msg.author.id)) 
 		return msg.channel.send("**Sorry!**\n> To Open this command. You have to join this server!\nhttps://discord.gg/j24UKsj").then(m => m.delete({timeout : 60000}));
 	//checking the commands if its only for Server Administrator
 	if(command.adminOnly && !msg.member.hasPermission('ADMINISTRATOR')){
-		return msg.channel.send('You cant do this! this is only for Admin of the guild')
+		if(command.adminOnly && msg.author.id !== owner) return msg.channel.send('You cant do this! this is only for Admin of the guild')
 	}
 	//checking the commands if its only for Owner of the Bot
 	if(command.ownerOnly && msg.author.id !== owner){
