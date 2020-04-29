@@ -6,9 +6,10 @@ Canvas = require("canvas"),
 //mulyaturmiji@gmail.com
 //nanadyah@yahoo.com
 
-exports.run = async (client, member, channelID) => {
+exports.run = async (client, member, channelID, logID) => {
 
      const channel = member.guild.channels.cache.get(channelID);
+     require("./functions.js").run(client, logID, "detectNewUser", member.id, channelID);
      //const channel = member.guild.channels.get('614009255959199768');
           if (!channel) return console.log('err not found channel named bot-channel');
            new Font(fontFile('../public/fonts/mcreg.otf'), {family:'Minecraft'})

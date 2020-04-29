@@ -24,7 +24,7 @@ client.on('ready', () => {
 	console.log('Yey Im alive! Hi, my name is '+client.user.tag);
 	client.user.setActivity("Restarting bot...", {url:'https://qkiemauln.github.io',type:"WATCHING"})
 	setTimeout(()=>{
-		client.user.setActivity("Rewritten. my Prefix is "+pref, {url:'https://qkiemauln.github.io',type:"WATCHING"})
+		client.user.setActivity("Rewritten. my Prefix is "+pref, {url:'https://qkiemauln.github.io',type:"WATCHING",timestamps: new Date().getTime(),details :"Hello world" })
 	}, 10000);
 });
 

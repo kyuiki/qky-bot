@@ -19,12 +19,14 @@
     "dotenv-flow": "^3.1.0",
     "ffmpeg": "0.0.4",
     "mojang-api": "0.0.2",
+    "mongoose": "^5.9.10",
     "ms": "^2.1.2",
     "nekos.life": "^2.0.6",
     "novelcovid": "^1.2.7",
     "snekfetch": "^4.0.4",
     "superagent": "^5.2.2",
     "translate": "^1.1.2",
+    "uuid": "^7.0.3",
     "ytdl-core": "^2.1.0"
   },
   "devDependencies": {
