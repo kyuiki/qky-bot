@@ -12,6 +12,7 @@ module.exports = {
 	ownerOnly: false,
 	execute(client, msg, args){
 		var person  = msg.mentions.members.first();
+		if(!person) return msg.channel.send("please mention someone");
 		if((args[1]||args[2]) === "male") return req({
 			url:"https://api.namefake.com/indonesian-indonesia/male"
 		}, (err, res, body) =>{
