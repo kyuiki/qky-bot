@@ -1,8 +1,8 @@
 const kill = require("../functions/json/misc.json");
 
 module.exports = {
-	name: 'kill',
-	description: 'kill someone',
+	name: 'slap',
+	description: 'slap them in the face',
 	aliases: [],
 	args: false,
 	usage: '<test>',
@@ -13,12 +13,8 @@ module.exports = {
 	ownerOnly: false,
 	execute(client, msg, args){
 		if(!args[0]) return msg.channel.send("please Mention someone");
-		var person = args[0] || args[1],
-		randomizer = kill.kill[Math.floor(Math.random()*kill.kill.length)],
-		victim = randomizer.replace("%1$s", person),
-		subject = victim.replace("%2$s", `<@${msg.author.id}>`),
-		result = subject.replace("%3$s", "Arrow");
-		msg.channel.send(`**${result}**`);
+		var person = args[0] || args[1];
+		msg.channel.send(`**${person} got slapped soo hard and he become unconscious**`);
 
    }
 

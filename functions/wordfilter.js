@@ -7,7 +7,7 @@ const Filter = require("bad-words"),
 
 exports.run = async (client, logId, msg, old) => {
 	//check if the user has administator perm
-	if(msg.member.hasPermission("ADMINISTRATOR")) return;
+	if(!msg.member.hasPermission("ADMINISTRATOR")) return;
     //the string 
     var str = msg.content.toLowerCase(), chance = Math.ceil(Math.random()*20)+15+" %";
     let before = "";
@@ -16,10 +16,10 @@ exports.run = async (client, logId, msg, old) => {
     }
 
     //filter 1 (loosen but agressive)
-    var wl_wl = Object.keys(wordList.words.wordlist), an_wl = Object.keys(wordList.words.animalword), sw_wl = Object.keys(wordList.words.sepi),
+    var wl_wl = wordList.words.wordlist, an_wl = wordList.words.animalword.split(", "), sw_wl = wordList.words.sepi.split(", "),
     wl_bool = false,an_bool = false,filter1=false;
     for(var i in wl_wl){
-        if(str.includes(wl_wl[i].toLowerCase()))
+        if(str.match(new RegExp(wl_wl[i], "gi")))
             wl_bool=true;
     }
     for(var i in an_wl){
@@ -28,10 +28,11 @@ exports.run = async (client, logId, msg, old) => {
     }
     if(wl_bool||(an_bool && !str.includes("hewan"))){
             msg.delete();
+            msg.channel.send("**BADWORD DETECTED!**\n*kesalahan? segera laporkan ke Qky!*")
             client.channels.cache.get(logId).send({
                 embed:{
                         title:"Filter ke 1 (Sepertinya akurat)!",
-                        description: before+"> "+str+"\nBadWord? : `"+wl_bool+"`\nAnimalWord? : `"+an_bool+"\nChance Dipenjara : "+chance+`\nMereka bilang seperti itu di channel <#${msg.channel.id}>. Dia adalah <@${msg.author.id}>`,
+                        description: before+"> "+str+"\nBadWord? : `"+wl_bool+"`\nAnimalWord? : `"+an_bool+`\`\nMereka bilang seperti itu di channel <#${msg.channel.id}>. Dia adalah <@${msg.author.id}>`,
                         color:0xfa1212,
                         author: {
                             name: msg.author.tag,
@@ -39,11 +40,12 @@ exports.run = async (client, logId, msg, old) => {
                         },
                     }
                 });
+            if(an_bool && !str.includes("hewan")) msg.channel.send("Oh ok gunakan **hewan** lain kali");
             filter1 = true;
     }
 
     //filter 2 (strong but weak)
-    if(filter1) return;
+    if(true) return;
     chance = Math.ceil(Math.random()*20)+5+" %";
 	//split the word
 	if(str.search(/\r|\n/)){
@@ -54,9 +56,9 @@ exports.run = async (client, logId, msg, old) => {
 	}
 
 	//badword start in here
-	var result = await Bad2Good(str, wordList.words.wordlist);
+	var result = "";
     //animal word start in here
-    var animal = await Bad2Good(result.output, wordList.words.animalword);
+    var animal = "";
     //sepiiiiiiii
         if((animal.isBad && !str.includes("hewan")) || result.isBad){
             client.channels.cache.get(logId).send({
@@ -73,70 +75,7 @@ exports.run = async (client, logId, msg, old) => {
         }
 
 }
-function Bad2Good(text, wordlists){
-        var T = wordlists,
-        isBad = false;
-        for (var prop in T)
-        {
-                var flags = 'ig';
-        // case sensitive
-                if (prop[prop.length - 1] == '!')
-                {
-                        flags = 'g';
-                        prop = prop.substr(0, prop.length - 1);
-                }
-                // starts with
-                if (prop[prop.length - 1] == '*')
-                {
-                        prop = '(\b)' + prop.substr(0, prop.length - 1) + '(\w*)(\b)';
-                }
-        // ends with
-                if (prop[0] == '*')
-                {
-                        prop = '(\b)(\w*)' + prop.substr(1, prop.length) + '(\b)';
-                }
-                text = text.replace(new RegExp(prop, flags), function (match, len, p1)
-                {
-            var lookup;
-            var replace;
-            var good;
-            if(Number.isInteger(len))
-            {
-                replace = match;
-                lookup = match;
-                isBad = true;
-            }
-            else
-            {
-                if(match.startsWith(p1))
-                {
-                    replace = match.replace(p1, '');
-                    lookup = '*' + replace;
-                }
-                else
-                {
-                    replace = match.replace(p1, '');
-                    lookup = replace + '*';
-                }
-            }
-            good = T[lookup.toLowerCase()] || T[lookup + '!'];
 
-            if(T[lookup + '!'] == undefined)
-            {
-                if((replace.toUpperCase() == replace))
-                {
-                    good = good.toUpperCase();
-                }
-                else if((replace.toLowerCase() == replace))
-                {
-                    good = good.toLowerCase();
-                }
-            }
-            return(match.replace(replace, good));
-                });
-        }
-        return ({
-        	output :text,
-        	isBad : isBad
-        });
+function badFilter2(input, list){
+    var pattern = new RegExp(``, "gi")
 }

@@ -13,7 +13,7 @@ module.exports = {
 	ownerOnly: false,
 	execute(client, msg, args){
 		if(!args[0]) return msg.channel.send("please Mention someone");
-        var roleID = msg.guild.roles.cache.find(r => r.name.toLowerCase().includes("prisoner")).id;
+        var roleID = msg.guild.roles.cache.find(r => r.name.toLowerCase().includes("penjara")).id;
         if(!roleID) msg.channel.send(":warning: **TIDAK DAPAT MENEMUKAN ROLE PRISONER!**");
 		var person = msg.mentions.members.first() /*|| msg.client.users.cache.get(args[0])*/;
 		console.log(person.roles.cache.has(roleID))

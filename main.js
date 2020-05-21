@@ -111,6 +111,10 @@ client.on('message', (msg) =>{
 
 client.on("messageUpdate", (old, now) =>{
 	if(!now.author.bot && now.channel.type == 'text') if(now.guild.id == myGuild) require('./functions/wordfilter.js').run(client, logID, now, old);
+});
+client.on('rateLimit', (a)=>{
+	console.log("your Bot Have Rate limit lol!");
+	console.log(a)
 })
 
 //API error Catcher
