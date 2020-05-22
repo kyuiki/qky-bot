@@ -7,7 +7,7 @@ const Filter = require("bad-words"),
 
 exports.run = async (client, logId, msg, old) => {
 	//check if the user has administator perm
-	if(msg.member.hasPermission("ADMINISTRATOR")) return;
+	//if(!msg.member.hasPermission("ADMINISTRATOR")) return;
     //the string 
     var str = msg.content.toLowerCase(), chance = Math.ceil(Math.random()*20)+15+" %";
     let before = "";
@@ -23,12 +23,12 @@ exports.run = async (client, logId, msg, old) => {
             wl_bool=true;
     }
     for(var i in an_wl){
-        if(str.includes(an_wl[i].toLowerCase()))
+        if(str.match(new RegExp(an_wl[i], "gi")))
             an_bool=true;
     }
     if(wl_bool||(an_bool && !str.includes("hewan"))){
             msg.delete();
-            msg.channel.send("**BADWORD DETECTED!**\n*kesalahan? segera laporkan ke Qky!*")
+            msg.channel.send("**BADWORD DETECTED!**\nPrototype: *kesalahan? segera laporkan ke Qky!*")
             client.channels.cache.get(logId).send({
                 embed:{
                         title:"Filter ke 1 (Sepertinya akurat)!",
