@@ -16,7 +16,7 @@ exports.run = async (client, logId, msg, old) => {
     }
 
     //filter 1 (loosen but agressive)
-    var wl_wl = wordList.words.wordlist, an_wl = wordList.words.animalword.split(", "), sw_wl = wordList.words.sepi.split(", "),
+    var wl_wl = wordList.words.wordlist, an_wl = wordList.words.animalword, sw_wl = wordList.words.sepi.split(", "),
     wl_bool = false,an_bool = false,filter1=false;
     for(var i in wl_wl){
         if(str.match(new RegExp(wl_wl[i], "gi")))
