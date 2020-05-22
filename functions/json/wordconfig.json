@@ -1,6 +1,6 @@
 {
 	"words" : {
-		"wordlist" : ["k+(o|u|i|0)*n+t+(o|u|i|0)*l+", "m+(e|3)+m+(e|3)+k+", "n*g*(e|3)*n+t+(u|o|0)*(d|t)+", "g+(o|u|e|3|0)*b+l+(o|u|e|3|0)*k+", "t+(o|u|0)+l+(o|u|0)+l+", "b+(e|3)+g+(o|e|0|3)+", "j+(e|3)+m+b+(o|u|0)+(d|t)+", "\\st+(o|0)+(d|t)+\\b", "b+(a|4)*n*g+s+(a|4)*t+", "b+(a|4)*c+(o|0)*(t|d)+", "b+r+(e|3)+n+g+s+(e|3)+k+", "j+(a|4)+n+c+(o|u)+k+", "n+g+(e|3)+w+(e|3)+", "h+(e|3)+(u?)+n+c+(e|3)+(u?)+t+", "l+(o|0)+n+t+(e|3)+", "t+(3|e|i)+m+p+(i|1)+k+", "h+(e|3)+n+t+(a|4)+(i|1)+", "o+p+p+a+i+"],
+		"wordlist" : ["k+(o|u|i|0)*n+t+(o|u|i|0)*l+", "m+(e|3)+m+(e|3)+k+", "n*g*(e|3)*n+t+(u|o|0)*(d|t)+", "g+(o|u|e|3|0)*b+l+(o|u|e|3|0)*k+", "t+(o|u|0)+l+(o|u|0)+l+", "b+(e|3)+g+(o|e|0|3)+", "j+(e|3)+m+b+(o|u|0)+(d|t)+", "\\st+(o|0)+(d|t)+\\b", "b+(a|4)*n*g+s+(a|4)*t+", "b+(a|4)*c+(o|0)*(t|d)+", "b+r+(e|3)+n+g+s+(e|3)+k+", "j+(a|4)+n+c+(o|u)+k+", "n+g+(e|3)+w+(e|3)+", "h+(e|3)+(u?)+n+c+(e|3)+(u?)+t+", "l+(o|0)+n+t+(e|3)+", "t+(3|e|i)+m+p+(i|1)+k+", "h+(e|3)+n+t+(a|4)+(i|1)+", "o+p+p+a+i+", "(m+(a|4)+)?m+p+(u|0|o)+e*(s|d)+"],
 		"invitelist" : "nitro, giveaway, giveaways, nitros, invite, invites, district, skyline, events, event, skylines, shop, districts, event",
 		"animalword" : ["(a\\B|4\\B)+s+(u|w)+\\b", "(a|4)*n+j+(i|1|e|3)*n*(g|k)+", "b+(a|4)+b+(i|1)+", "m*(o|0)*n+y+(e|3)+(t|d)+", "k+(a|4)+m+p+r+(e|3)+(d|t)"],
 		"sepi" : "sepi, s3pi, syepi, sep1, sy3p1, 53p1, 5epi, sepy, syep1, 5y3p1, 5yepi, s3p1, sy3pi, 5yep1, shepi, sh3p1, 5h3p1, shep1"

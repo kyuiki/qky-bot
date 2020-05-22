@@ -17,22 +17,28 @@ exports.run = async (client, logId, msg, old) => {
 
     //filter 1 (loosen but agressive)
     var wl_wl = wordList.words.wordlist, an_wl = wordList.words.animalword, sw_wl = wordList.words.sepi.split(", "),
-    wl_bool = false,an_bool = false,filter1=false;
+    wl_bool = {word:"",bool:false},an_bool = {word:"",bool:false},filter1=false;
     for(var i in wl_wl){
         if(str.match(new RegExp(wl_wl[i], "gi")))
-            wl_bool=true;
+            wl_bool={
+                bool: true,
+                word: str.match(new RegExp(wl_wl[i], "gi"))
+            };
     }
     for(var i in an_wl){
         if(str.match(new RegExp(an_wl[i], "gi")))
-            an_bool=true;
+            an_bool={
+                bool: true,
+                word: str.match(new RegExp(an_wl[i], "gi"))
+            };
     }
-    if(wl_bool||(an_bool && !str.includes("hewan"))){
+    if(wl_bool.bool||(an_bool.bool && !str.includes("hewan"))){
             msg.delete();
-            msg.channel.send("**BADWORD DETECTED!**\nPrototype: *kesalahan? segera laporkan ke Qky!*")
+            msg.channel.send("**BADWORD DETECTED!**\nTerdeteksi =`"+`${wl_bool.word||an_bool.word}`+"`\nPrototype: *kesalahan? segera laporkan ke Qky!*")
             client.channels.cache.get(logId).send({
                 embed:{
                         title:"Filter ke 1 (Sepertinya akurat)!",
-                        description: before+"> "+str+"\nBadWord? : `"+wl_bool+"`\nAnimalWord? : `"+an_bool+`\`\nMereka bilang seperti itu di channel <#${msg.channel.id}>. Dia adalah <@${msg.author.id}>`,
+                        description: before+"> "+str+"\nBadWord? : `"+wl_bool.bool+"`\nAnimalWord? : `"+an_bool.bool+`\`\nMereka bilang seperti itu di channel <#${msg.channel.id}>. Dia adalah <@${msg.author.id}>`,
                         color:0xfa1212,
                         author: {
                             name: msg.author.tag,
@@ -40,7 +46,7 @@ exports.run = async (client, logId, msg, old) => {
                         },
                     }
                 });
-            if(an_bool && !str.includes("hewan")) msg.channel.send("Oh ok gunakan **hewan** lain kali");
+            if(an_bool.bool && !str.includes("hewan")) msg.channel.send("Oh ok gunakan **hewan** lain kali");
             filter1 = true;
     }
 
