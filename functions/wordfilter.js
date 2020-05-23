@@ -34,7 +34,7 @@ exports.run = async (client, logId, msg, old) => {
     }
     if(wl_bool.bool||(an_bool.bool && !str.includes("hewan"))){
             msg.delete();
-            msg.channel.send("**BADWORD DETECTED!**\nTerdeteksi =`"+`${wl_bool.word||an_bool.word}`+"`\nPrototype: *kesalahan? segera laporkan ke Qky!*")
+            if(wl_bool.bool) msg.reply(response("badword"))
             client.channels.cache.get(logId).send({
                 embed:{
                         title:"Filter ke 1 (Sepertinya akurat)!",
@@ -46,7 +46,7 @@ exports.run = async (client, logId, msg, old) => {
                         },
                     }
                 });
-            if(an_bool.bool && !str.includes("hewan")) msg.channel.send("Oh ok gunakan **hewan** lain kali");
+            if(an_bool.bool && !str.includes("hewan")) msg.reply(response("animalword"));
             filter1 = true;
     }
 
@@ -82,6 +82,7 @@ exports.run = async (client, logId, msg, old) => {
 
 }
 
-function badFilter2(input, list){
-    var pattern = new RegExp(``, "gi")
+function response(input){
+    var x = wordList.response[input];
+    return x[Math.floor(Math.random()*x.length)];
 }
