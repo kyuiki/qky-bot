@@ -16,8 +16,8 @@ exports.run = async (client, logId, msg, old) => {
     }
 
     //filter 1 (loosen but agressive)
-    var wl_wl = wordList.words.wordlist, an_wl = wordList.words.animalword, sw_wl = wordList.words.sepi.split(", "),
-    wl_bool = {word:"",bool:false},an_bool = {word:"",bool:false},filter1=false;
+    var wl_wl = wordList.words.wordlist, an_wl = wordList.words.animalword, sw_wl = wordList.words.sepi,
+    wl_bool = {word:"",bool:false},an_bool = {word:"",bool:false},sw_bool = {word:"",bool:false},filter1=false;
     for(var i in wl_wl){
         if(str.match(new RegExp(wl_wl[i], "gi")))
             wl_bool={
@@ -32,13 +32,21 @@ exports.run = async (client, logId, msg, old) => {
                 word: str.match(new RegExp(an_wl[i], "gi"))
             };
     }
-    if(wl_bool.bool||(an_bool.bool && !str.includes("hewan"))){
+    for(var i in sw_wl){
+        if(str.match(new RegExp(sw_wl[i], "gi")))
+            sw_bool={
+                bool: true,
+                word: str.match(new RegExp(an_wl[i], "gi"))
+            };
+    }
+    if(wl_bool.bool||(an_bool.bool && !str.includes("hewan")||sw_bool.bool)){
             msg.delete();
-            if(wl_bool.bool) msg.reply(response("badword"))
+            if(wl_bool.bool) msg.reply(response("badword"));
+            if(sw_bool.bool) msg.reply(response("sepi"));
             client.channels.cache.get(logId).send({
                 embed:{
                         title:"Filter ke 1 (Sepertinya akurat)!",
-                        description: before+"> "+str+"\nBadWord? : `"+wl_bool.bool+"`\nAnimalWord? : `"+an_bool.bool+`\`\nMereka bilang seperti itu di channel <#${msg.channel.id}>. Dia adalah <@${msg.author.id}>`,
+                        description: before+"> "+str+"\nBadWord? : `"+wl_bool.bool+"`\nAnimalWord? : `"+an_bool.bool+`\`\nS-Word? : \`${sw_bool.bool}\`\nMereka bilang seperti itu di channel <#${msg.channel.id}>. Dia adalah <@${msg.author.id}>`,
                         color:0xfa1212,
                         author: {
                             name: msg.author.tag,
