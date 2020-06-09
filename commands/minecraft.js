@@ -9,7 +9,10 @@ module.exports = {
 	cooldown: 5,
 	nsfw: false,
 	guildOnly: true,
-	adminOnly: false,
+	needPerms: {
+		bool: false,
+		permission : []
+	},
 	ownerOnly: false,
 	execute(client, msg, args){
 		mojang.nameToUuid((args[0]||args[1]), function(err, res){

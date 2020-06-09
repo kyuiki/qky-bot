@@ -68,8 +68,8 @@ client.on('message', (msg) =>{
 	if(command.nsfw && !client.guilds.cache.get("598284769641627651").members.cache.get(msg.author.id)) 
 		return msg.channel.send("**Sorry!**\n> To Open this command. You have to join this server!\nhttps://discord.gg/j24UKsj").then(m => m.delete({timeout : 60000}));
 	//checking the commands if its only for Server Administrator
-	if(command.adminOnly && !msg.member.hasPermission('ADMINISTRATOR')){
-		if(command.adminOnly && msg.author.id !== owner) return msg.channel.send('You cant do this! this is only for Admin of the guild')
+	if(command.needPerms.bool && !msg.member.hasPermission(command.needPerms.permission)){
+		if(command.needPerms.bool && msg.author.id !== owner) return msg.channel.send('You cant do this! this is only for member who have this permission '+command.needPerms.permission.join(" "))
 	}
 	//checking the commands if its only for Owner of the Bot
 	if(command.ownerOnly && msg.author.id !== owner){

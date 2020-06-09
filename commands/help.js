@@ -10,7 +10,10 @@ module.exports = {
 	cooldown: 5,
 	nsfw: false,
 	guildOnly: false,
-	adminOnly: false,
+	needPerms: {
+		bool: false,
+		permission : []
+	},
 	ownerOnly: false,
 	execute(client, msg, args){
 		const data = new Discord.MessageEmbed().setTitle("Help Command").setTimestamp().setColor('#2375df'),

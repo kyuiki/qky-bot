@@ -9,7 +9,10 @@ module.exports = {
 	cooldown: 3,
 	nsfw: false,
 	guildOnly: true,
-	adminOnly: false,
+	needPerms: {
+		bool: true,
+		permission : ["ADMINISTRATOR"]
+	},
 	ownerOnly: false,
 	execute(client, msg, args){
 		let total = (args[0] || args[1]) - -1;

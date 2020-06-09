@@ -50,7 +50,10 @@ module.exports = {
 	cooldown: 3,
 	nsfw: true,
 	guildOnly: true,
-	adminOnly: false,
+    needPerms: {
+        bool: false,
+        permission : []
+    },
 	ownerOnly: false,
 	execute(client, msg, args){
 		let type = (args[0]||args[1]).toLowerCase();

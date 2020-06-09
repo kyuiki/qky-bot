@@ -9,7 +9,10 @@ module.exports = {
 	nsfw: false,
 	unusable: false,
 	guildOnly: true,
-	adminOnly: false,
+	needPerms: {
+		bool: true,
+		permission : ["CHANGE_NICKNAME"]
+	},
 	ownerOnly: false,
 	execute(client, msg, args){
 		if(!args[0]) return msg.channel.send("please Mention someone");

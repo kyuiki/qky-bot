@@ -10,7 +10,10 @@ module.exports = {
 	nsfw: false,
 	unusable: true,
 	guildOnly: true,
-	adminOnly: false,
+	needPerms: {
+		bool: false,
+		permission : []
+	},
 	ownerOnly: false,
 	execute(client, msg, args){
 		var link = (args[0]||args[1]);

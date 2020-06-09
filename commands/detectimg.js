@@ -8,7 +8,10 @@ module.exports = {
 	cooldown: 900,
 	nsfw: false,
 	guildOnly: true,
-	adminOnly: false,
+	needPerms: {
+		bool: true,
+		permission : ["EMBED_LINKS", "ATTACH_FILES"]
+	},
 	ownerOnly: false,
 	execute(client, msg, args){
 		if(!process.env.IMAGGA_USER||!process.env.IMAGGA_PASS) return msg.reply(":warning: **Command Cant Be runned**\nPut User and password into your .env variable")

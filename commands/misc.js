@@ -7,7 +7,10 @@ module.exports = {
 	cooldown: 5,
 	nsfw: false,
 	guildOnly: true,
-	adminOnly: false,
+	needPerms: {
+		bool: false,
+		permission : []
+	},
 	ownerOnly: false,
 	execute(client, msg, args){
 		if(!args[0]) return msg.channel.send(msg.author.avatarURL({format: 'png',dynamic: true}));

@@ -8,7 +8,10 @@ module.exports = {
 	cooldown: 5,
 	nsfw: false,
 	guildOnly: true,
-	adminOnly: false,
+	needPerms: {
+		bool: true,
+		permission : ["CHANGE_NICKNAME"]
+	},
 	ownerOnly: false,
 	execute(client, msg, args){
 		try{

@@ -7,7 +7,7 @@ const Filter = require("bad-words"),
 
 exports.run = async (client, logId, msg, old) => {
 	//check if the user has administator perm
-	if(msg.member.hasPermission("ADMINISTRATOR")) return;
+	if(!msg.member.hasPermission("ADMINISTRATOR")) return;
     //the string 
     var str = msg.content.toLowerCase(), chance = Math.ceil(Math.random()*20)+15+" %";
     let before = "";

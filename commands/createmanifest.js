@@ -10,7 +10,10 @@ module.exports = {
 	cooldown: 5,
 	nsfw: false,
 	guildOnly: true,
-	adminOnly: false,
+	needPerms: {
+		bool: false,
+		permission : []
+	},
 	ownerOnly: false,
 	execute(client, msg, args){
 		msg.channel.send(

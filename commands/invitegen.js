@@ -3,11 +3,14 @@ module.exports = {
 	description: 'invite generator! (ownerOnly)',
 	aliases: ['invgene'],
 	args: false,
-	usage: '',
+	usage: '',  
 	cooldown: 1,
 	nsfw: false,
 	guildOnly: true,
-	adminOnly: false,
+	needPerms: {
+		bool: false,
+		permission : []
+	},
 	ownerOnly: true,
 	execute(client, msg, args){
 		try{

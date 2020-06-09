@@ -9,7 +9,10 @@ module.exports = {
 	cooldown: 3,
 	nsfw: false,
 	guildOnly: true,
-	adminOnly: false,
+	needPerms: {
+		bool: false,
+		permission : []
+	},
 	ownerOnly: false,
 	execute(client, msg, args){
 		if(!args[0]) return msg.channel.send("please Mention someone");

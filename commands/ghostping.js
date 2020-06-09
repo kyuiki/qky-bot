@@ -9,7 +9,10 @@ module.exports = {
 	unusable: false,
 	nsfw: false,
 	guildOnly: true,
-	adminOnly: false,
+	needPerms: {
+		bool: false,
+		permission : []
+	},
 	ownerOnly: false,
 	execute(client, msg, args){
 		msg.channel.send("Object successfully summoned")

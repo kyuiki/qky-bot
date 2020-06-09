@@ -1,3 +1,4 @@
+
 module.exports = {
 	name: 'eval',
 	description: 'Run a code with eval',
@@ -7,7 +8,10 @@ module.exports = {
 	cooldown: 3,
 	nsfw: false,
 	guildOnly: false,
-	adminOnly: false,
+	needPerms: {
+		bool: false,
+		permission : []
+	},
 	ownerOnly: true,
 	execute(client, msg, args){
 	const messages = msg.content.split(' ').slice(1).join(' ');

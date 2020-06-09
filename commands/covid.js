@@ -9,7 +9,10 @@ module.exports = {
 	cooldown: 3,
 	nsfw: false,
 	guildOnly: false,
-	adminOnly: false,
+	needPerms: {
+		bool: false,
+		permission : []
+	},
 	ownerOnly: false,
 	execute(client, msg, args){
 		if((args[0]||args[1]).toLowerCase() == "leaderboards"){

@@ -8,7 +8,10 @@ module.exports = {
 	cooldown: 5,
 	nsfw: false,
 	guildOnly: true,
-	adminOnly: true,
+	needPerms: {
+		bool: true,
+		permission : ["VIEW_AUDIT_LOG", "MANAGE_NICKNAMES"]
+	},
 	ownerOnly: false,
 	execute(client, msg, args){
 		var person  = msg.mentions.members.first();
