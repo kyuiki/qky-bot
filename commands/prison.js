@@ -2,7 +2,7 @@
 module.exports = {
 	name: 'prison',
 	description: 'put the user into prison',
-	aliases: ['gulag', 'pris', 'penjara'],
+	aliases: ['gulag', 'pris', 'penjara', 'culik'],
 	args: true,
 	usage: '<mention a user>',
 	cooldown: 3,
@@ -22,7 +22,7 @@ module.exports = {
 		console.log(person.roles.cache.has(roleID))
 		if(!person.roles.cache.has(roleID)){
 			person.roles.add(roleID);
-			msg.channel.send(`**${person.displayName} dimasukan ke penjara**`);
+			msg.channel.send(`**${person.displayName} dimasukan ke dalam Mobil dan di karungin**`);
 		}else{
 			person.roles.remove(roleID);
 			msg.channel.send(`**Dibebaskan ${person.displayName} dari penjara**`);

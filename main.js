@@ -39,7 +39,7 @@ client.on("guildMemberRemove", (member) => {
 });
 
 client.on("guildMemberUpdate", (old, now) => {
-	require(`./functions/nickname.js`).run(client, old, now);
+	if(!now.bot && now.guild.id == myGuild) require(`./functions/nickname.js`).run(client, logID, old, now);
 })
 
 client.on('message', (msg) =>{

@@ -39,10 +39,10 @@ exports.run = async (client, logId, msg, old) => {
                 word: str.match(new RegExp(an_wl[i], "gi"))
             };
     }
-    if(wl_bool.bool||(an_bool.bool && !str.includes("hewan")||sw_bool.bool)){
+    if(wl_bool.bool||(an_bool.bool && !str.includes("hewan")/*||sw_bool.bool*/)){
             msg.delete();
             if(wl_bool.bool) msg.reply(response("badword"));
-            if(sw_bool.bool) msg.reply(response("sepi"));
+            //if(sw_bool.bool) msg.reply(response("sepi"));
             client.channels.cache.get(logId).send({
                 embed:{
                         title:"Filter ke 1 (Sepertinya akurat)!",

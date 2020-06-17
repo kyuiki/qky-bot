@@ -37,7 +37,7 @@ exports.run = async (client, channelID, fnName, data1, data2, data3) => {
                 name: info.tag,
                 icon_url: info.avatarURL({format: 'png',dynamic: true}),
             },
-            description : warn + timeDif,
+            description : warn + timeDif ,
             color : color,
             timestamp : new Date()
   		}})
