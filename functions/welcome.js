@@ -84,7 +84,7 @@ console.log("Writing welcome text done")
 
 console.log("rendering user text ")
 
-    		const { body: buffer } = await snekfetch.get(member.user.displayAvatarURL({format: 'png',dynamic: true}));
+    		const { body: buffer } = await snekfetch.get(member.user.displayAvatarURL({format: 'png',size: 256}));
 console.log("encoding avatar...")
     		const avatar = await Canvas.loadImage(buffer);
 console.log("Loading avatar...")
