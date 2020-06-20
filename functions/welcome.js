@@ -82,13 +82,18 @@ console.log("Writing welcome text done")
     		ctx.closePath();
     		ctx.clip();
 
-console.log("rendering done! :) ")
+console.log("rendering user text ")
 
     		const { body: buffer } = await snekfetch.get(member.user.displayAvatarURL({format: 'png',dynamic: true}));
+console.log("encoding avatar...")
     		const avatar = await Canvas.loadImage(buffer);
+console.log("Loading avatar...")
     		ctx.drawImage(avatar, 25, 25, 200, 200);
+console.log("Rendering avatar.")
     		const attachment = new discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
+console.log("decoding and ready to sended")
     		channel.send(`Welcome to the server, ${member}!`, attachment);
+console.log("sended :)")
     		console.log(canvas.toBuffer())
 }
 
