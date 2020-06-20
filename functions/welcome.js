@@ -11,6 +11,9 @@ exports.run = async (client, member, channelID, logID) => {
      const channel = member.guild.channels.cache.get(channelID);
      require("./functions.js").run(client, logID, "detectNewUser", member.id, channelID);
      //const channel = member.guild.channels.get('614009255959199768');
+
+console.log("...")
+
           if (!channel) return console.log('err not found channel named bot-channel');
            new Font(fontFile('../public/fonts/mcreg.otf'), {family:'Minecraft'})
            new Font(fontFile('../public/fonts/mcB.otf'), {family:'Minecraft', weight:'bold'});
@@ -31,17 +34,24 @@ exports.run = async (client, member, channelID, logID) => {
     		// Return the result to use in the actual canvas
     		return ctx.font; };
 
+console.log("preparing all done")
+
     		//draw background
     		const background = await Canvas.loadImage('https://cdn.discordapp.com/attachments/614009255959199768/723706228470972497/Screenshot_20200218-134500_Minecraft-picsay.jpg');
     		ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
     		ctx.strokeStyle = colorRandom();
     		ctx.fill(50, 50, 210, 210);
 
+console.log("drawing background done!.")
+
     		//draw stroke line
     		ctx.stroke();
     		ctx.strokeStyle = colorRandom();
     		ctx.lineWidth = 10;
     		ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+console.log("drawing strokeline done")
+
     		// Slightly smaller text placed above the member's display name
     		ctx.font = `24px Minecraft`;
     		ctx.shadowBlur = 10;
@@ -59,6 +69,8 @@ exports.run = async (client, member, channelID, logID) => {
     		ctx.fill(20, 20, 210, 210);
     		ctx.stroke();
 
+console.log("Writing welcome text done")
+
     		//render user text
     		ctx.font = applyText(canvas, `${member.displayName}!`);
     		ctx.shadowBlur = 10;
@@ -69,6 +81,9 @@ exports.run = async (client, member, channelID, logID) => {
     		ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
     		ctx.closePath();
     		ctx.clip();
+
+console.log("rendering done! :) ")
+
     		const { body: buffer } = await snekfetch.get(member.user.displayAvatarURL({format: 'png',dynamic: true}));
     		const avatar = await Canvas.loadImage(buffer);
     		ctx.drawImage(avatar, 25, 25, 200, 200);
