@@ -32,7 +32,7 @@ exports.run = async (client, member, channelID, logID) => {
     		return ctx.font; };
 
     		//draw background
-    		const background = await Canvas.loadImage('https://i.imgur.com/9z47oU9.png');
+    		const background = await Canvas.loadImage('https://cdn.discordapp.com/attachments/614009255959199768/723706228470972497/Screenshot_20200218-134500_Minecraft-picsay.jpg');
     		ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
     		ctx.strokeStyle = colorRandom();
     		ctx.fill(50, 50, 210, 210);
