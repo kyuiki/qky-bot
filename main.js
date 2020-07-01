@@ -1,15 +1,18 @@
 const 	fs = require('fs'),
+		req = require("request"),
 		Discord = require("discord.js"),
 		client = new Discord.Client({disableMentions: "everyone"}),
 		cooldowns = new Discord.Collection();
 		require('dotenv-flow').config();
 		require('events').EventEmitter.defaultMaxListeners = 0;
 
-const {token , pref, owner, welcome_channel, myGuild, logID} = {
+const {token , pref, owner, welcome_channel, myGuild, logID, logAttach, logMod} = {
 	pref : process.env.PREFIX ,
 	token : process.env.TOKEN ,
 	owner : process.env.OWNER ,
 	logID : process.env.LOGGING_CHANNEL ,
+	logMod : process.env.LMOD ,
+	logAttach : process.env.LATTACH ,
 	welcome_channel : process.env.WELCOME_CHID,
 	myGuild : process.env.MY_GUILD_ID
 };
@@ -43,7 +46,12 @@ client.on("guildMemberUpdate", (old, now) => {
 })
 
 client.on('message', (msg) =>{
-	if(!msg.author.bot && msg.channel.type == 'text') if(msg.guild.id == myGuild) require('./functions/wordfilter.js').run(client, logID, msg);
+	if(!msg.author.bot && msg.channel.type == 'text') if(msg.guild.id == myGuild){ 
+		require('./functions/wordfilter.js').run(client, logID, msg);
+		require('./functions/functions.js').run(client, logID, "dramaWritter", msg);
+		require('./functions/functions.js').run(client, logAttach, "attachment", msg);
+		//require('./functions/functions.js').run(client, logMod, "modLog", msg);
+	};
 	if(!msg.content.toLowerCase().startsWith(pref) || msg.author.bot) return;
 	const args = msg.content.slice(pref.length).split(/ +/),
 	commandName = args.shift().toLowerCase();
@@ -125,3 +133,25 @@ process.on('unhandledRejection', err =>{
 
 client.login(token);
 console.log("Finally!");
+
+function webhookSender(a, c, wh){
+		if(a.channel.id == c  && !a.author.bot){
+			let temp_a = Math.floor(Math.random()*a.guild.members.cache.size),
+			b = a.guild.members.cache.array()[temp_a],
+			d = a.member;
+				console.log("Chatting Activated")
+				let content = {
+					content : a.content,
+					username : `${d.displayName}`,
+					avatar_url : d.user.avatarURL()
+				};
+				req.post({
+					url :wh,
+					body : JSON.stringify(content),
+					headers: {"content-type" : "application/json"}
+				}, (err, res, body) => {
+					if(err) return console.log(err);
+					console.log(body)
+				})
+			}
+		}

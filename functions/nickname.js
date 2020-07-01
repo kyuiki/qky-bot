@@ -9,7 +9,7 @@ exports.run = async (client, logID, old, now) => {
 
 	//check if member has ! , . * = 
 	hoist.forEach( h => {
-		if(now.displayName.startsWith(h)) return now.setNickname(`${old.displayName}`)
+		if(now.displayName.startsWith(h)) return now.setNickname(`[]`)
 	})
 	var str = " abcdefghijklmnopqrstuvwxyz1234567890\\.\\@\\#\\$\\%\\&\\*\\+\\(\\)\\!\"'\\:\\;\\/\\?\\~\\`\\{\\}\\^\\_\\=\\<\\>";
 	var str1 = new RegExp(`[^${str.split("").join("|")}]`, "gi");

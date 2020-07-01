@@ -1,3 +1,5 @@
+const req = require("request");
+
 exports.run = async (client, channelID, fnName, data1, data2, data3) => {
      const channel = client.channels.cache.get(channelID);
      if (!channel) return console.log('err not found channel named log-channel');
@@ -5,6 +7,18 @@ exports.run = async (client, channelID, fnName, data1, data2, data3) => {
      	case 'detectNewUser':
      	detectNewUser(data1, data2);
      	console.log("Runned the detectNewUser function");
+     	break;
+     	case 'dramaWritter':
+     	dramaWritter(data1, data2);
+     	console.log("Runned the dramaWritter function");
+     	break;
+     	case 'attachment':
+     	attachment(data1, data2);
+     	console.log("Runned the attachment function");
+     	break;
+     	case 'modLog':
+     	modLog(data1, data2);
+     	console.log("Runned the modLog function");
      	break;
      }
 
@@ -41,5 +55,32 @@ exports.run = async (client, channelID, fnName, data1, data2, data3) => {
             color : color,
             timestamp : new Date()
   		}})
+	}
+	function attachment(a, b, c){
+		let data = [];
+		if(!a.attachments.size) return;
+
+		for(var i = 0; i<a.attachments.size; i++){
+			data.push(a.attachments.array()[i].url);
+		}
+  		channel.send(`${a.member.displayName} (${a.author.tag})\nIn Channel (${a.channel})\n> ${a.content.replace( /<@!?\d+>/gi , "@mention")}`, {files: data})
+	}
+	function dramaWritter(a,b,c){
+		if(a.channel.id == "660661778597806101"){
+				console.log("Drama!")
+				let content = {
+					content : a.content,
+					username : a.member.displayName,
+					avatar_url : a.author.avatarURL()
+				};
+				req.post({
+					url :process.env.DWebhook,
+					body : JSON.stringify(content),
+					headers: {"content-type" : "application/json"}
+				}, (err, res, body) => {
+					if(err) return console.log(err);
+					console.log(body)
+				})
+			}
 	}
 }
