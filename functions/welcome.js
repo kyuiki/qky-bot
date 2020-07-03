@@ -1,7 +1,7 @@
 const discord = require("discord.js"),
 Canvas = require("canvas"),
  path = require("path"),
- snekfetch = require('snekfetch'),
+ fetch = require('node-fetch'),
  Font = Canvas.registerFont ;
 //mulyaturmiji@gmail.com
 //nanadyah@yahoo.com
@@ -84,8 +84,10 @@ console.log("Writing welcome text done")
 
 console.log("rendering user text ")
 
-    		const { body: buffer } = await snekfetch.get(member.user.displayAvatarURL({format: 'png',size: 256}));
+    		let buffer;
+            await fetch(member.user.displayAvatarURL({format: 'png',size: 256})).then(res => res.buffer()).then(buf => buffer = buf);
 console.log("encoding avatar...")
+console.log(buffer)
     		const avatar = await Canvas.loadImage(buffer);
 console.log("Loading avatar...")
     		ctx.drawImage(avatar, 25, 25, 200, 200);
