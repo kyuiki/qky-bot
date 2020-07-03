@@ -20,6 +20,7 @@ module.exports = {
         if(!roleID) msg.channel.send(":warning: **TIDAK DAPAT MENEMUKAN ROLE PRISONER!**");
 		var person = msg.mentions.members.first() /*|| msg.client.users.cache.get(args[0])*/;
 		console.log(person.roles.cache.has(roleID))
+		if(person.id == msg.member.id || person.hasPermission("ADMINISTRATOR")) return msg.channel.send(":x: Kamu tidak boleh melakukan itu untuk dirimu sendiri / Sesama mu :(");
 		if(!person.roles.cache.has(roleID)){
 			person.roles.add(roleID);
 			msg.channel.send(`**${person.displayName} dimasukan ke dalam Mobil dan di karungin**`);

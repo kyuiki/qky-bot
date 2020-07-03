@@ -9,6 +9,7 @@ exports.run = async (client, logId, msg, old) => {
 	//check if the user has administator perm
 	if(msg.member.hasPermission("ADMINISTRATOR")) return;
     //the string 
+    MentionKiller(msg);
     var str = msg.content.toLowerCase(), chance = Math.ceil(Math.random()*20)+15+" %";
     let before = "";
     if(old){
@@ -93,4 +94,13 @@ exports.run = async (client, logId, msg, old) => {
 function response(input){
     var x = wordList.response[input];
     return x[Math.floor(Math.random()*x.length)];
+}
+
+function MentionKiller(msg){
+    var x = /(<@&\d+>|@everyone|@here)/gi, z = msg.guild.roles.cache.find(r => r.name.toLowerCase().includes("muted"));
+    if(!msg.content.match(x)) return console.log("Lolos Tidak memention everyone atau semacamnya");
+    msg.delete();
+    msg.channel.send(":x: Jangan Coba coba mention everyone atau role :(");
+    msg.member.roles.add(z);
+    setTimeout(()=>{msg.member.roles.remove(z)}, 300*1000);
 }
