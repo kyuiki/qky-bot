@@ -100,7 +100,7 @@ function MentionKiller(msg){
     var x = /(<@&\d+>|@everyone|@here)/gi, z = msg.guild.roles.cache.find(r => r.name.toLowerCase().includes("muted"));
     if(!msg.content.match(x)) return console.log("Lolos Tidak memention everyone atau semacamnya");
     msg.delete();
-    msg.channel.send(":x: Jangan Coba coba mention everyone atau role :(");
+    msg.channel.send(":x: Jangan Coba coba mention everyone atau role :(\n*Apakah kamu datang ke server Romansyah hanya untuk Promosi?\nApakah kamu belum membaca rules?*\n`30m`");
     msg.member.roles.add(z);
-    setTimeout(()=>{msg.member.roles.remove(z)}, 300*1000);
+    setTimeout(()=>{msg.member.roles.remove(z)}, 1800*1000);
 }
