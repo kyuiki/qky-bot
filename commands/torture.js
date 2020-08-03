@@ -14,7 +14,7 @@ module.exports = {
 		permission : ["ADMINISTRATOR"]
 	},
 	ownerOnly: false,
-	execute(client, msg, args){
+	async execute(client, msg, args){
 		if(!args[0]) return msg.channel.send("please Mention someone");
         var roleID = msg.guild.roles.cache.find(r => r.name.toLowerCase().includes("penjara")).id;
         var tortureID = msg.guild.roles.cache.find(r => r.name.toLowerCase().includes("torture")).id;
@@ -23,9 +23,9 @@ module.exports = {
 		if(person.id == msg.member.id || person.hasPermission("ADMINISTRATOR")) return msg.channel.send(":x: Kamu tidak boleh melakukan itu untuk dirimu sendiri / Sesama mu :(");
 		console.log(person.roles.cache.has(roleID))
 		console.log("WTF!!! Someone run this command")
-		person.roles.remove(msg.guild.roles.cache.array(), `Di jalankan oleh ${msg.member.displayName}`);
-		person.roles.add(roleID);
-		person.roles.add(tortureID);
+		await person.roles.remove(msg.guild.roles.cache.array(), `Di jalankan oleh ${msg.member.displayName}`);
+		await person.roles.add(roleID);
+		await person.roles.add(tortureID);
 		msg.channel.send(`**${person.displayName} Dikirim dan di Introgasi.**\n*Semua role yang dia punya dilepas dan di ganti menjadi penjara dan torture yang hanya bisa dilihat oleh Administrasi*`);
    }
 

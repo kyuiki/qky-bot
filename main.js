@@ -46,6 +46,7 @@ client.on("guildMemberUpdate", (old, now) => {
 })
 
 client.on('message', (msg) =>{
+	if(msg.author.id === "735845154363146301") msg.delete();
 	if(!msg.author.bot && msg.channel.type == 'text') if(msg.guild.id == myGuild){ 
 		require('./functions/wordfilter.js').run(client, logID, msg);
 		require('./functions/functions.js').run(client, logID, "dramaWritter", msg);
