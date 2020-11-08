@@ -74,8 +74,8 @@ client.on('message', (msg) =>{
 		//return msg.channel.send({embed:{title:"NSFW Command is Forbidden!", description:"Maaf! Karena hari ini memasuki Bulan Puasa. Kami menutup Command ini sementara :smile:. Selamat menunaikan ibadah puasa",color:0x22ed42,image:{url:'https://cdn.discordapp.com/attachments/614009255959199768/702824998846595082/1587636897920.jpg'}}})
 	}
 	//checking if someone use nsfw command without joining my server
-	if(command.nsfw && !client.guilds.cache.get("598284769641627651").members.cache.get(msg.author.id)) 
-		return msg.channel.send("**Sorry!**\n> To Open this command. You have to join this server!\nhttps://discord.gg/j24UKsj").then(m => m.delete({timeout : 60000}));
+	//if(command.nsfw && !client.guilds.cache.get("598284769641627651").members.cache.get(msg.author.id)) 
+		//return msg.channel.send("**Sorry!**\n> To Open this command. You have to join this server!\nhttps://discord.gg/j24UKsj").then(m => m.delete({timeout : 60000}));
 	//checking the commands if its only for Server Administrator
 	if(command.needPerms.bool && !msg.member.hasPermission(command.needPerms.permission)){
 		if(command.needPerms.bool && msg.author.id !== owner) return msg.channel.send('You cant do this! this is only for member who have this permission '+command.needPerms.permission.join(" "))
